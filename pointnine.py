@@ -15,7 +15,7 @@ for item in items:
     strings = desc.text.split()
     recommend_number_of_people = strings[2]
     time = strings[5]
-    rating = len(
+    level = len(
         item.find_element("class name", "level_img").find_elements("tag name", "img")
     )
 
@@ -24,7 +24,7 @@ for item in items:
     print("\t장르 : " + genre)
     print("\t추천인원 : " + recommend_number_of_people)
     print("\t시간 : " + time)
-    print("\t별점 : " + str(rating))
+    print("\난이도 : " + str(level))
 
 for loc in locations :
     print("\t 지점명 : " + loc.text)
