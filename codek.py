@@ -6,11 +6,12 @@ import time
 driver = webdriver.Chrome()
 driver.get("http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S1")
 
-locations = driver.find_element(By.CLASS_NAME, "sub_3_tab").find_elements("tag name", "a")
+locations = ["http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S1", "http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S2", "http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S3"]
 
-currentUrl = driver.current_url
-
-for location in locations[1:]:
+for location in locations:
+   driver.get(location)
+   time.sleep(1)
+   
    name = driver.find_element(By.XPATH, '//*[@id="cont_text"]/ul[2]/span').text
    print("위치 : " + name)
          
@@ -47,12 +48,6 @@ for location in locations[1:]:
          
       # 돌아가기 버튼 클릭
       closeBtn = theme.find_element(By.XPATH, '//*[@id="tab1"]/div[1]').click()
-      
-   driver.execute_script("arguments[0].click();", location)
-   time.sleep(1)
-
-   
-   
 
    
       
