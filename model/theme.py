@@ -14,7 +14,7 @@ class Theme:
     store: str
 
     # 매장 위치
-    location: str
+    location: str = ""
 
     # 장르
     genre: str = ""
