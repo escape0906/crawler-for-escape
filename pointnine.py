@@ -1,30 +1,39 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from model.theme import Theme
 
 driver = webdriver.Chrome()
 driver.get("https://point-nine.com/layout/res/home.php?go=theme.list")
 
-locations = driver.find_elements("class name", "theme_zizum_name")
-items = driver.find_elements("class name", "theme_box")
+stores = driver.find_elements(By.CLASS_NAME, "theme_zizum_name")
+theme_list = driver.find_elements(By.CLASS_NAME, "theme_List")
 
-for item in items:
-    thumbnail = item.find_element("class name", "theme_pic").find_element("tag name", "img")
-    header = item.find_element("tag name", "h3").text.split(' (')
-    title = header[0]
-    genre = header[1][:-1]
-    desc = driver.find_element("css selector",'.theme_div span:nth-of-type(2)')
-    strings = desc.text.split()
-    recommend_number_of_people = strings[2]
-    time = strings[5]
-    level = len(
-        item.find_element("class name", "level_img").find_elements("tag name", "img")
-    )
+for store, themes in zip(stores, theme_list):
+    themes = themes.find_elements(By.CLASS_NAME, "theme_box")
 
-    print("{\n")
-    print("\t제목 : " + title)
-    print("\t장르 : " + genre)
-    print("\t추천인원 : " + recommend_number_of_people)
-    print("\t시간 : " + time)
-    print("\난이도 : " + str(level))
+    for theme in themes:
+        thumbnail = theme.find_element("class name", "theme_pic").find_element(
+            "tag name", "img"
+        )
+        header = theme.find_element("tag name", "h3").text.split(" (")
+        title = header[0]
+        genre = header[1][:-1]
+        desc = driver.find_element("css selector", ".theme_div span:nth-of-type(2)")
+        strings = desc.text.split()
+        recommend_number_of_people = strings[2]
+        time = strings[5]
+        level = len(
+            theme.find_element("class name", "level_img").find_elements(
+                "tag name", "img"
+            )
+        )
 
-for loc in locations :
-    print("\t 지점명 : " + loc.text)
+        data = Theme(
+            title=title,
+            genre=genre,
+            play_time=time,
+            difficult=level,
+            store=store.text,
+            recomended_number_of_people=recommend_number_of_people,
+        )
+        print(data)

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+from model.theme import Theme
 
 response = requests.get("https://www.keyescape.co.kr/web/home.php?go=main")
 
@@ -16,14 +17,7 @@ for item in items:
     for difficult_img in difficult_imgs:
         if "star01" in difficult_img["src"]:
             difficult += 1
-    print("{\n")
-    print("\t제목 : ", end=" ")
-    print(title)
+
     # 난이도 소수점 버림
-    print("\t별점 : " + str(difficult))
-    # 지점이 이미지로 구분돼서 직접 써야함
-    # print("\t위치 : " + location)
-    print("\t장르 : " + genre)
-    print("플레이 시간 : " + play_time)
-    # print("\t추천 인원수 : " + recomended_number_of_people)
-    print("\n}")
+    data = Theme(title=title, store="수기 작성", genre=genre, difficult=difficult)
+    print(data)

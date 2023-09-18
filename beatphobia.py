@@ -1,4 +1,5 @@
 from selenium import webdriver
+from model.theme import Theme
 
 driver = webdriver.Chrome()
 driver.get("https://www.xphobia.net/quest/quest_list.php")
@@ -27,16 +28,27 @@ for item in items:
     elif "lev5" in level_tag:
         level = 5
 
-    print("{\n")
-    print("\t제목 : ", end=" ")
-    print(title)
-    # 별점이 아니고 난이도임
-    print("\t별점 : " + str(level))
+    # print("{\n")
+    # print("\t제목 : ", end=" ")
+    # print(title)
+    # # 별점이 아니고 난이도임
+    # print("\t별점 : " + str(level))
 
-    # 지점이 한 줄로 쓰여있어서 나중에 분리해야 함
-    print("\t위치 : " + location)
-    print("\t장르 : " + genre)
-    # 추천 인원수가 아니고 최대 인원수
-    print("\t추천 인원수 : " + maximum_people)
+    # # 지점이 한 줄로 쓰여있어서 나중에 분리해야 함
+    # print("\t위치 : " + location)
+    # print("\t장르 : " + genre)
+    # # 추천 인원수가 아니고 최대 인원수
+    # print("\t추천 인원수 : " + maximum_people)
 
-    print("\n}")
+    # print("\n}")
+
+    data = Theme(
+        title=title,
+        store="비트포비아",
+        location=location,
+        difficult=level,
+        genre=genre,
+        maximum_people=maximum_people,
+    )
+
+    print(data)
