@@ -25,7 +25,13 @@ class KeyescapeCrawler(ThemeCrawler):
 
             # 난이도 소수점 버림
             result.append(
-                Theme(title=title, store="수기 작성", genre=genre, difficult=difficult)
+                Theme(
+                    title=title,
+                    store="수기 작성",
+                    genre=genre,
+                    play_time=play_time,
+                    difficult=difficult,
+                )
             )
 
         return result
