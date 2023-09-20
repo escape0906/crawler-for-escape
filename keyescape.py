@@ -4,7 +4,7 @@ from model.theme import Theme
 from crawler.ThemeCrawler import ThemeCrawler
 
 
-class KeyescapeCrawler(ThemeCrawler):
+class KeyEscapeCrawler(ThemeCrawler):
     def get_themes(self):
         result = []
         response = requests.get("https://www.keyescape.co.kr/web/home.php?go=main")

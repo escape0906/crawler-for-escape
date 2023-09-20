@@ -57,7 +57,7 @@ class CodeKCrawler(ThemeCrawler):
 
                 data = Theme(
                     title=title,
-                    store=store,
+                    store="코드케이 " + store,
                     genre=genre,
                     difficult=level,
                     recomended_number_of_people=recomended_number_of_people,

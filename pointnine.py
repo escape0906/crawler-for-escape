@@ -40,7 +40,7 @@ class PointNineCrawler(ThemeCrawler):
                     genre=genre,
                     play_time=time,
                     difficult=level,
-                    store=store.text,
+                    store="포인트나인 " + store.text,
                     recomended_number_of_people=recommend_number_of_people,
                 )
                 result.append(data)

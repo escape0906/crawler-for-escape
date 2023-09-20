@@ -24,7 +24,7 @@ class MasterKeyCrawler(ThemeCrawler):
                 genre=genre,
                 difficult=level,
                 recomended_number_of_people=recomended_number_of_people,
-                store=store,
+                store="마스터키 " + store,
             )
             result.append(data)
         return result

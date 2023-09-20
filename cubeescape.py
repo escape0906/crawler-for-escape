@@ -39,7 +39,10 @@ class CubeEscapeCrawler(ThemeCrawler):
                 )
 
                 data = Theme(
-                    title=title, store=store_name, genre=genre, difficult=level
+                    title=title,
+                    store="큐브이스케이프 " + store_name,
+                    genre=genre,
+                    difficult=level,
                 )
                 result.append(data)
 

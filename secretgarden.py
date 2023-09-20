@@ -15,7 +15,7 @@ class SecretGardenCrawler(ThemeCrawler):
         for tab in tab_list:
             tab.click()
             id = tab.get_attribute("href").split("#")[-1]
-            store = tab.text
+            store = "비밀의화원 " + tab.text
             theme_list = driver.find_elements("css selector", "#%s>ul>li" % id)
             for theme in theme_list:
                 title = theme.find_element("class name", "mtit").text

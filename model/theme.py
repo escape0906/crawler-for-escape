@@ -10,11 +10,11 @@ class Theme:
     # 제목
     title: str
 
-    # 매장명
+    # 매장명(브랜드명 + 지점)
     store: str
 
-    # 매장 위치
-    location: str = ""
+    # 매장 위치(주소)
+    address: str = ""
 
     # 장르
     genre: str = ""

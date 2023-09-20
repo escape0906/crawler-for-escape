@@ -36,7 +36,7 @@ class BeatPhobiaCrawler(ThemeCrawler):
             data = Theme(
                 title=title,
                 store="비트포비아",
-                location=location,
+                address=location,
                 difficult=level,
                 genre=genre,
                 maximum_people=maximum_people,

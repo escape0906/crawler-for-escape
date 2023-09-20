@@ -49,9 +49,9 @@ class GoldKeyCrawler(ThemeCrawler):
                     genre=genre,
                     play_time=time,
                     difficult=level,
-                    store=store.text,
+                    store="황금열쇠 " + store.text,
                     recomended_number_of_people=recommend_number_of_people,
-                    location=address,
+                    address=address,
                 )
                 result.append(data)
 
