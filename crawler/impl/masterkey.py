@@ -13,7 +13,11 @@ class MasterKeyCrawler(ThemeCrawler):
         items = driver.find_elements("css selector", ".swiper-slide>a")
 
         for item in items:
-            title = item.get_attribute("data-title")
+            title = (
+                item.get_attribute("data-title")
+                .replace('<img src="/img/19_img.png">', "")
+                .strip()
+            )
             genre = item.get_attribute("data-type")
             store = item.get_attribute("data-s2")
             level = item.get_attribute("data-level")
