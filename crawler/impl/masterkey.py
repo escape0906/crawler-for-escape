@@ -17,7 +17,7 @@ class MasterKeyCrawler(ThemeCrawler):
                 item.get_attribute("data-title")
                 .replace('<img src="/img/19_img.png">', "")
                 .strip()
-            )
+            )  # 타이틀에 나이제한 태그가 포함된 경우 제거
             genre = item.get_attribute("data-type")
             store = item.get_attribute("data-s2")
             level = item.get_attribute("data-level")
