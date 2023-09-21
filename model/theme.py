@@ -23,7 +23,7 @@ class Theme:
     difficult: int = 0
 
     # 추천 인원 수, 보통 범위로 나타나서 str으로 저장함
-    recomended_number_of_people: str = ""
+    recommended_people: str = ""
 
     # 최대 인원 수, 제공하지 않는 경우가 많아서 기본 값 0으로 초기화
     maximum_people: int = 0

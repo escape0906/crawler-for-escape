@@ -60,7 +60,7 @@ class CodeKCrawler(ThemeCrawler):
                     store="코드케이 " + store,
                     genre=genre,
                     difficult=level,
-                    recomended_number_of_people=recomended_number_of_people,
+                    recommended_people=recomended_number_of_people,
                 )
                 result.append(data)
                 # 돌아가기 버튼 클릭

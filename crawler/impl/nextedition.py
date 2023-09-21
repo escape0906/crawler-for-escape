@@ -37,7 +37,7 @@ class NextEditionCrawler(ThemeCrawler):
                 difficult=rating,
                 store=store,
                 genre=genre,
-                recomended_number_of_people=recomended_number_of_people,
+                recommended_people=recomended_number_of_people,
             )
             result.append(data)
 
