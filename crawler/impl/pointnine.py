@@ -1,28 +1,19 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
 from model.theme import Theme
 from crawler.ThemeCrawler import ThemeCrawler
 
 
-class GoldKeyCrawler(ThemeCrawler):
+class PointNineCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
         driver = webdriver.Chrome()
-        driver.get("http://xn--jj0b998aq3cptw.com/layout/res/home.php?go=theme.list")
+        driver.get("https://point-nine.com/layout/res/home.php?go=theme.list")
 
         stores = driver.find_elements(By.CLASS_NAME, "theme_zizum_name")
         theme_list = driver.find_elements(By.CLASS_NAME, "theme_List")
-        locations = driver.find_elements(By.CLASS_NAME, "location")
 
-        for store, themes, location in zip(stores, theme_list, locations):
-            info = location.find_elements(
-                By.CSS_SELECTOR, "ul>li .map_info table tbody tr .text"
-            )
-            address = info[1].text
-            # 주소 info[1].text
-            # 전화번호 info[2].text
-
+        for store, themes in zip(stores, theme_list):
             themes = themes.find_elements(By.CLASS_NAME, "theme_box")
 
             for theme in themes:
@@ -49,9 +40,8 @@ class GoldKeyCrawler(ThemeCrawler):
                     genre=genre,
                     play_time=time,
                     difficult=level,
-                    store="황금열쇠 " + store.text,
-                    recomended_number_of_people=recommend_number_of_people,
-                    address=address,
+                    store="포인트나인 " + store.text,
+                    recommended_people=recommend_number_of_people,
                 )
                 result.append(data)
 
