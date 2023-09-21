@@ -62,6 +62,17 @@ db_con = pymysql.connect(
 
 cursor = db_con.cursor()
 
+cursor.execute("drop table theme;")
+
+sql_file = os.path.join(BASE_DIR, "create_table.sql")
+
+with open(sql_file) as f:
+    sql = f.read()
+try:
+    cursor.execute(sql)
+except RuntimeError:
+    print("cannot read sql file")
+
 for crawler in crawler_instances:
     try:
         themes = crawler.get_themes()
