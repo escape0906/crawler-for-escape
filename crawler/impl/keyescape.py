@@ -27,7 +27,7 @@ class KeyEscapeCrawler(ThemeCrawler):
             result.append(
                 Theme(
                     title=title,
-                    store="수기 작성",
+                    store="키이스케이프",
                     genre=genre,
                     play_time=play_time,
                     difficult=difficult,
