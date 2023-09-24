@@ -1,3 +1,8 @@
 .venv
 .vscode
 chromedriver.exe
+
+db_config.json
+
+__pycache__
+*.pyc
