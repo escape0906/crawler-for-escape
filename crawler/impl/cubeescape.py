@@ -11,23 +11,24 @@ class CubeEscapeCrawler(ThemeCrawler):
         driver.get("http://cubeescape.co.kr/")
         driver.implicitly_wait(1)
         store_boxes = driver.find_elements("class name", "circle_div")
-        print(store_boxes)
+
         for store_box in store_boxes:
             store_name = store_box.find_element("tag name", "h4").text
             site = store_box.find_element(By.XPATH, '//a[text()="테마소개"]').get_attribute(
                 "href"
             )
 
-            print("\매장위치 : " + store_name)
             driver.get(site)
             driver.implicitly_wait(2)
 
             items = driver.find_elements("class name", "item-main")
 
             for item in items:
-                thumbnail = item.find_element(
-                    "class name", "portfolio-image"
-                ).find_element("tag name", "img")
+                thumbnail = (
+                    item.find_element("class name", "portfolio-image")
+                    .find_element("tag name", "img")
+                    .get_attribute("src")
+                )
                 title = item.find_element("css selector", ".text-center.title").text
                 genre = item.find_element(
                     "css selector", ".text-center.title + .text-center"
@@ -40,6 +41,7 @@ class CubeEscapeCrawler(ThemeCrawler):
 
                 data = Theme(
                     title=title,
+                    thumbnail=thumbnail,
                     store="큐브이스케이프 " + store_name,
                     genre=genre,
                     difficult=level,
