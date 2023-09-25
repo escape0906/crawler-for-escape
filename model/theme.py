@@ -10,6 +10,7 @@ class Theme:
     def __init__(
         self,
         title,
+        thumbnail,
         store,
         address="",
         genre="",
@@ -19,6 +20,7 @@ class Theme:
         play_time=0,
     ):
         self.title = self.drop_special_character(title)
+        self.thumbnail = thumbnail
         self.store = self.drop_special_character(store)
         self.address = self.drop_special_character(address)
         self.genre = self.drop_special_character(genre)
@@ -46,6 +48,9 @@ class Theme:
 
     # 제목
     title: str
+
+    # 썸네일 이미지 주소
+    thumbnail: str
 
     # 매장명(브랜드명 + 지점)
     store: str

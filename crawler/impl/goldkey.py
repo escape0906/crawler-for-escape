@@ -26,26 +26,35 @@ class GoldKeyCrawler(ThemeCrawler):
             themes = themes.find_elements(By.CLASS_NAME, "theme_box")
 
             for theme in themes:
-                thumbnail = theme.find_element("class name", "theme_pic").find_element(
-                    "tag name", "img"
+                # 썸네일
+                thumbnail = (
+                    theme.find_element(By.CLASS_NAME, "theme_pic")
+                    .find_element(By.TAG_NAME, "img")
+                    .get_attribute("src")
                 )
-                header = theme.find_element("tag name", "h3").text.split(" (")
+                header = theme.find_element(By.TAG_NAME, "h3").text.split(" (")
+                # 타이틀
                 title = header[0]
+                # 장르
                 genre = header[1][:-1]
                 desc = driver.find_element(
-                    "css selector", ".theme_div span:nth-of-type(2)"
+                    By.CSS_SELECTOR, ".theme_div span:nth-of-type(2)"
                 )
                 strings = desc.text.split()
+                # 추천 인원 수
                 recommend_number_of_people = strings[2]
+                # 플레이타임
                 time = strings[5]
+                # 난이도
                 level = len(
-                    theme.find_element("class name", "level_img").find_elements(
-                        "tag name", "img"
+                    theme.find_element(By.CLASS_NAME, "level_img").find_elements(
+                        By.TAG_NAME, "img"
                     )
                 )
 
                 data = Theme(
                     title=title,
+                    thumbnail=thumbnail,
                     genre=genre,
                     play_time=time,
                     difficult=level,

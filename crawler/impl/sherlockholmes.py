@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from crawler.ThemeCrawler import ThemeCrawler
 from model.theme import Theme
 
@@ -21,7 +22,9 @@ class SherlockHolmesCrawler(ThemeCrawler):
                 # hover
                 actions.move_to_element(item).perform()
 
-                thumbnail = item.find_element("class name", "img").get_attribute("src")
+                thumbnail = item.find_element(
+                    By.CSS_SELECTOR, ".img>img"
+                ).get_attribute("src")
                 information = (
                     item.find_element("class name", "img")
                     .find_element("class name", "over")
@@ -46,7 +49,13 @@ class SherlockHolmesCrawler(ThemeCrawler):
                     store = "셜록홈즈 " + store
 
                 result.append(
-                    Theme(title=title, genre=genre, store=store, difficult=level)
+                    Theme(
+                        title=title,
+                        thumbnail=thumbnail,
+                        genre=genre,
+                        store=store,
+                        difficult=level,
+                    )
                 )
                 list.append(title)
 

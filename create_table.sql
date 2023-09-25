@@ -1,6 +1,7 @@
 create table theme (
     id int auto_increment,
     title varchar(200),
+    thumbnail varchar(1000),
     store varchar(200),
     address varchar(400),
     genre varchar(200),
