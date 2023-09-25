@@ -17,26 +17,23 @@ class PointNineCrawler(ThemeCrawler):
             themes = themes.find_elements(By.CLASS_NAME, "theme_box")
 
             for theme in themes:
-                thumbnail = theme.find_element("class name", "theme_pic").find_element(
-                    "tag name", "img"
-                )
-                header = theme.find_element("tag name", "h3").text.split(" (")
+                thumbnail = theme.find_element(
+                    By.CSS_SELECTOR, ".theme_pic>img"
+                ).get_attribute("src")
+                header = theme.find_element(By.TAG_NAME, "h3").text.split(" (")
                 title = header[0]
                 genre = header[1][:-1]
                 desc = driver.find_element(
-                    "css selector", ".theme_div span:nth-of-type(2)"
+                    By.CSS_SELECTOR, ".theme_div span:nth-of-type(2)"
                 )
                 strings = desc.text.split()
                 recommend_number_of_people = strings[2]
                 time = strings[5]
-                level = len(
-                    theme.find_element("class name", "level_img").find_elements(
-                        "tag name", "img"
-                    )
-                )
+                level = len(theme.find_elements(By.CSS_SELECTOR, ".level_img>img"))
 
                 data = Theme(
                     title=title,
+                    thumbnail=thumbnail,
                     genre=genre,
                     play_time=time,
                     difficult=level,
