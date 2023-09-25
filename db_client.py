@@ -51,8 +51,8 @@ db_name = get_value("DB_NAME")
 def create_insert_query(theme: Theme) -> str:
     return (
         "insert into theme"
-        + "(title, store, address, genre, difficult, recommended_people, maximum_people, play_time)"
-        + f"values ('''{theme.title}''', '{theme.store}','{theme.address}','{theme.genre}',{theme.difficult},'{theme.recommended_people}',{theme.maximum_people},{theme.play_time});"
+        + "(title, thumbnail, store, address, genre, difficult, recommended_people, maximum_people, play_time)"
+        + f"values ('{theme.title}', '{theme.thumbnail}','{theme.store}','{theme.address}','{theme.genre}',{theme.difficult},'{theme.recommended_people}',{theme.maximum_people},{theme.play_time});"
     )
 
 
