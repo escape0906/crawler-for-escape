@@ -4,5 +4,8 @@ chromedriver.exe
 
 db_config.json
 
+test.py
+
 __pycache__
+./crawler/impl/__pycache__
 *.pyc

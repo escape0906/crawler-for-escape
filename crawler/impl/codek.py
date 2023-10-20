@@ -10,8 +10,7 @@ from crawler.ThemeCrawler import ThemeCrawler
 class CodeKCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
-        driver.get("http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S1")
+        self.driver.get("http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S1")
 
         locations = [
             "http://www.code-k.co.kr/sub/code_sub03.html?R_JIJEM=S1",
@@ -20,15 +19,15 @@ class CodeKCrawler(ThemeCrawler):
         ]
 
         for location in locations:
-            driver.get(location)
+            self.driver.get(location)
             time.sleep(1)
 
             # 매장명
-            store = driver.find_element(
+            store = self.driver.find_element(
                 By.XPATH, '//*[@id="cont_text"]/ul[2]/span'
             ).text.split(" ")[0]
 
-            themes = driver.find_elements(By.CSS_SELECTOR, ".tt_img>ul>li")
+            themes = self.driver.find_elements(By.CSS_SELECTOR, ".tt_img>ul>li")
             for theme in themes:
                 # 썸네일
                 thumbnail = theme.find_element(By.CSS_SELECTOR, "a>img").get_attribute(

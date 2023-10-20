@@ -8,10 +8,9 @@ from crawler.ThemeCrawler import ThemeCrawler
 class NextEditionCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
-        driver.get("https://www.nextedition.co.kr/themes")
+        self.driver.get("https://www.nextedition.co.kr/themes")
 
-        items = driver.find_elements(By.CLASS_NAME, "property-listing-row")
+        items = self.driver.find_elements(By.CLASS_NAME, "property-listing-row")
         for item in items:
             infomation_card = item.find_element(By.CLASS_NAME, "listing-content-alt")
             # 타이틀

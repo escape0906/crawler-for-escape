@@ -7,10 +7,9 @@ from crawler.ThemeCrawler import ThemeCrawler
 class BeatPhobiaCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
-        driver.get("https://www.xphobia.net/quest/quest_list.php")
+        self.driver.get("https://www.xphobia.net/quest/quest_list.php")
 
-        items = driver.find_elements(By.CSS_SELECTOR, ".quest_content>div")
+        items = self.driver.find_elements(By.CSS_SELECTOR, ".quest_content>div")
 
         for item in items:
             title = item.find_element(By.CSS_SELECTOR, ".txt_wrap h5 a").text

@@ -7,10 +7,9 @@ from crawler.ThemeCrawler import ThemeCrawler
 class CubeEscapeCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
-        driver.get("http://cubeescape.co.kr/")
-        driver.implicitly_wait(1)
-        store_boxes = driver.find_elements("class name", "circle_div")
+        self.driver.get("http://cubeescape.co.kr/")
+        self.driver.implicitly_wait(1)
+        store_boxes = self.driver.find_elements("class name", "circle_div")
 
         for store_box in store_boxes:
             store_name = store_box.find_element("tag name", "h4").text
@@ -18,10 +17,10 @@ class CubeEscapeCrawler(ThemeCrawler):
                 "href"
             )
 
-            driver.get(site)
-            driver.implicitly_wait(2)
+            self.driver.get(site)
+            self.driver.implicitly_wait(2)
 
-            items = driver.find_elements("class name", "item-main")
+            items = self.driver.find_elements("class name", "item-main")
 
             for item in items:
                 thumbnail = (
@@ -48,5 +47,5 @@ class CubeEscapeCrawler(ThemeCrawler):
                 )
                 result.append(data)
 
-            driver.back()
+            self.driver.back()
         return result
