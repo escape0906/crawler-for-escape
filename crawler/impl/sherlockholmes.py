@@ -9,14 +9,13 @@ from model.theme import Theme
 class SherlockHolmesCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
         list = []
         link = "https://sherlock-holmes.co.kr/theme/index.php?start="
-        driver.get(link + str(len(list)))
+        self.driver.get(link + str(len(list)))
 
         while len(list) % 12 == 0:
-            items = driver.find_elements("class name", "col.s3")
-            actions = ActionChains(driver)
+            items = self.driver.find_elements("class name", "col.s3")
+            actions = ActionChains(self.driver)
 
             for item in items:
                 # hover
@@ -59,7 +58,7 @@ class SherlockHolmesCrawler(ThemeCrawler):
                 )
                 list.append(title)
 
-            driver.get(link + str(len(list)) + "&")
-            driver.implicitly_wait(2)
+            self.driver.get(link + str(len(list)) + "&")
+            self.driver.implicitly_wait(2)
 
         return result

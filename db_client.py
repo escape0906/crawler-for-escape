@@ -13,17 +13,23 @@ import pymysql
 import os, json
 from model.theme import Theme
 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+
+service = ChromeService(executable_path="chromedriver.exe")
+driver = webdriver.Chrome(service=service)
+
 crawler_instances = [
-    KeyEscapeCrawler(),
-    NextEditionCrawler(),
-    SecretGardenCrawler(),
-    PointNineCrawler(),
-    MasterKeyCrawler(),
-    GoldKeyCrawler(),
-    CubeEscapeCrawler(),
-    CodeKCrawler(),
-    BeatPhobiaCrawler(),
-    SherlockHolmesCrawler(),
+    KeyEscapeCrawler(driver),
+    NextEditionCrawler(driver),
+    SecretGardenCrawler(driver),
+    PointNineCrawler(driver),
+    MasterKeyCrawler(driver),
+    GoldKeyCrawler(driver),
+    CubeEscapeCrawler(driver),
+    CodeKCrawler(driver),
+    BeatPhobiaCrawler(driver),
+    SherlockHolmesCrawler(driver),
 ]
 
 BASE_DIR = "./"

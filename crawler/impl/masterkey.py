@@ -8,10 +8,9 @@ class MasterKeyCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
         BASE_URL = "https://www.master-key.co.kr"
-        driver = webdriver.Chrome()
-        driver.get("https://www.master-key.co.kr/home/theme")
+        self.driver.get("https://www.master-key.co.kr/home/theme")
 
-        items = driver.find_elements(By.CSS_SELECTOR, ".swiper-slide>a")
+        items = self.driver.find_elements(By.CSS_SELECTOR, ".swiper-slide>a")
 
         for item in items:
             # 타이틀

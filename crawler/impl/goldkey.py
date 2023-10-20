@@ -8,12 +8,13 @@ from crawler.ThemeCrawler import ThemeCrawler
 class GoldKeyCrawler(ThemeCrawler):
     def get_themes(self) -> list[Theme]:
         result = []
-        driver = webdriver.Chrome()
-        driver.get("http://xn--jj0b998aq3cptw.com/layout/res/home.php?go=theme.list")
+        self.driver.get(
+            "http://xn--jj0b998aq3cptw.com/layout/res/home.php?go=theme.list"
+        )
 
-        stores = driver.find_elements(By.CLASS_NAME, "theme_zizum_name")
-        theme_list = driver.find_elements(By.CLASS_NAME, "theme_List")
-        locations = driver.find_elements(By.CLASS_NAME, "location")
+        stores = self.driver.find_elements(By.CLASS_NAME, "theme_zizum_name")
+        theme_list = self.driver.find_elements(By.CLASS_NAME, "theme_List")
+        locations = self.driver.find_elements(By.CLASS_NAME, "location")
 
         for store, themes, location in zip(stores, theme_list, locations):
             info = location.find_elements(
@@ -37,7 +38,7 @@ class GoldKeyCrawler(ThemeCrawler):
                 title = header[0]
                 # 장르
                 genre = header[1][:-1]
-                desc = driver.find_element(
+                desc = self.driver.find_element(
                     By.CSS_SELECTOR, ".theme_div span:nth-of-type(2)"
                 )
                 strings = desc.text.split()
