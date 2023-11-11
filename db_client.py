@@ -16,8 +16,20 @@ from model.theme import Theme
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--single-process")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--single-process")
+chrome_options.add_argument("--disable-dev-shm-usage")
+
 service = ChromeService(executable_path="chromedriver.exe")
-driver = webdriver.Chrome(service=service)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 crawler_instances = [
     KeyEscapeCrawler(driver),
@@ -68,7 +80,7 @@ db_con = pymysql.connect(
 
 cursor = db_con.cursor()
 
-cursor.execute("drop table theme;")
+cursor.execute("drop table if exists theme;")
 
 sql_file = os.path.join(BASE_DIR, "create_table.sql")
 
