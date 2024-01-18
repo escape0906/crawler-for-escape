@@ -1,17 +1,8 @@
-from crawler.impl.keyescape import KeyEscapeCrawler
-from crawler.impl.nextedition import NextEditionCrawler
-from crawler.impl.secretgarden import SecretGardenCrawler
-from crawler.impl.pointnine import PointNineCrawler
-from crawler.impl.masterkey import MasterKeyCrawler
-from crawler.impl.goldkey import GoldKeyCrawler
-from crawler.impl.cubeescape import CubeEscapeCrawler
-from crawler.impl.codek import CodeKCrawler
-from crawler.impl.beatphobia import BeatPhobiaCrawler
-from crawler.impl.sherlockholmes import SherlockHolmesCrawler
-
 import pymysql
 import os, json
+
 from model.theme import Theme
+from crawler_factory import CralwerFactory
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -22,27 +13,10 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--single-process")
 chrome_options.add_argument("--disable-dev-shm-usage")
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--single-process")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
 service = ChromeService(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-crawler_instances = [
-    KeyEscapeCrawler(driver),
-    NextEditionCrawler(driver),
-    SecretGardenCrawler(driver),
-    PointNineCrawler(driver),
-    MasterKeyCrawler(driver),
-    GoldKeyCrawler(driver),
-    CubeEscapeCrawler(driver),
-    CodeKCrawler(driver),
-    BeatPhobiaCrawler(driver),
-    SherlockHolmesCrawler(driver),
-]
+crawler_instances = CralwerFactory(driver=driver).get_instances()
 
 BASE_DIR = "./"
 db_config_file = os.path.join(BASE_DIR, "db_config.json")
